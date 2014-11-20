@@ -6,4 +6,16 @@ echo "Enter the string to be replaced : "
 read target
 echo "Enter the string to take the place of the target string : "
 read spatch
-sed 's/'$target'/'$patch'/g' $source > $destination
+if [ -f $destination ]
+then
+	echo "Overwriting the destination file"
+else
+	echo "Creating the destination file"
+fi
+
+if [ -f $ssource ]
+then
+	sed 's/'$target'/'$patch'/g' $source > $destination
+else
+	echo "Source File Doesn't Exist...Quitting"
+fi
